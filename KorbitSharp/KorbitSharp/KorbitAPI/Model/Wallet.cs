@@ -19,8 +19,8 @@ namespace KorbitSharp.Model
 
     public class BalanceItem
     {
-        public int valueAsKrw;
-        public double value;
+        public int krwValue;
+        public double coinValue;
     }
 
     public class BalanceItemConverter : JsonConverter
@@ -42,9 +42,9 @@ namespace KorbitSharp.Model
             foreach (JObject jobj in jary)
             {
                 if ((string)jobj["currency"] == "krw")
-                    item.valueAsKrw = (int)jobj["value"];
+                    item.krwValue = (int)jobj["value"];
                 else
-                    item.value = (double)jobj["value"];
+                    item.coinValue = (double)jobj["value"];
             }
 
             return item;

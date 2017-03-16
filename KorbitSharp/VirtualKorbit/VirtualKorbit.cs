@@ -10,6 +10,11 @@ namespace VirtualKorbit
 {
     public class VirtualKorbit
     {
+        public static void Charge(CurrencyType type, int krwAmount)
+        {
+
+        }
+
         public static void EnableVirtualCorbit()
         {
             // 실수 방지용
