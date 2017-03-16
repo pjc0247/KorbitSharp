@@ -3,7 +3,7 @@ KorbitSharp
 
 Auth
 ----
-__Non-Public__ API를 사용하기 위해서는 먼저 __로그인__과정을 수행해야 합니다.
+__Non-Public__ API를 사용하기 위해서는 먼저 __로그인__ 과정을 수행해야 합니다.
 ```cs
 Auth.Login(clientId, clientSecret, username, password);
 Auth.EnableExchange(nonce);
