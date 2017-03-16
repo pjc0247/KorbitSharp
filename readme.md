@@ -34,13 +34,29 @@ Exchange
 ----
 __BUY__
 ```cs
-Exchange.PlaceBidAsync(CurrencyType.Bitcoin, PRICE, AMOUNT);
+var status = 
+    await Exchange.PlaceBidAsync(CurrencyType.Bitcoin, PRICE, AMOUNT);
 ```
 
 __SELL__
 ```cs
-Exchange.PlaceAskAsync(CurrencyType.Bitcoin, PRICE, AMOUNT);
+var status = 
+    await Exchange.PlaceAskAsync(CurrencyType.Bitcoin, PRICE, AMOUNT);
+```
+
+__StatusCode__
+```cs
+if (status == ExchangeStatusCode.Success)
+    ; // 성공
+else if (status == ExchangeStatusCode.NotEnoughKrw)
+    ; // KRW 잔액 부족
 ```
 
 Wallet
 ----
+
+```cs
+var wallet = await Wallet.QueryWalletAsync(CurrencyType.Bitcoin);
+
+wallet.balance.krwValue;
+```
