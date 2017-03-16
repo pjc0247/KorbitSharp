@@ -20,6 +20,6 @@ namespace KorbitSharp.Model
         public int ask;
         public int low;
         public int high;
-        public float volume;
+        public double volume;
     }
 }

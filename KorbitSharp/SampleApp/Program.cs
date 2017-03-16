@@ -14,6 +14,9 @@ namespace SampleApp
         {
             Console.WriteLine(Currency.QueryAsync(CurrencyType.Ethereum).Result);
 
+            var orderbook = Orderbook.QueryOrderbookAsync(CurrencyType.Ethereum).Result;
+
+            Console.WriteLine(orderbook.asks[0].amount);
         }
     }
 }

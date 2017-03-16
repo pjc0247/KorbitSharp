@@ -26,7 +26,7 @@ namespace KorbitSharp
         {
             var json = await RestCall.GetAsync(Host + api + ToQueryString(param));
 
-            return JsonConvert.DeserializeObject<T>(json);
+            return JsonConvert.DeserializeObject<T>(json, new JsonConverter[] { new Model.OrderbookItemConverter() });
         }
         public static Task<T> GetAsync<T>(string api)
         {
