@@ -7,30 +7,28 @@ using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 
-using Newtonsoft.Json;
-
 namespace KorbitSharp
 {
     class KorbitCall {
-        public static readonly string Host = "https://api.korbit.co.kr/";
+        internal static IKorbitCall impl;
 
-        private static string ToQueryString(Dictionary<string, object> dic)
+        static KorbitCall()
         {
-            var array = (from e in dic
-                         select string.Format("{0}={1}", Uri.EscapeUriString(e.Key), Uri.EscapeUriString(e.Value.ToString())))
-                .ToArray();
-            return "?" + string.Join("&", array);
+            impl = new KorbitCallImpl();
         }
 
         public static async Task<T> GetAsync<T>(string api, Dictionary<string, object> param)
         {
-            var json = await RestCall.GetAsync(Host + api + ToQueryString(param));
-
-            return JsonConvert.DeserializeObject<T>(json, new JsonConverter[] { new Model.OrderbookItemConverter() });
+            return await impl.GetAsync<T>(api, param);   
         }
         public static Task<T> GetAsync<T>(string api)
         {
             return GetAsync<T>(api, new Dictionary<string, object>());
+        }
+
+        public static async Task<T> PostAsync<T>(string api, Dictionary<string, object> param)
+        {
+            return await impl.PostAsync<T>(api, param);
         }
     }
 }

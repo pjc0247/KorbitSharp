@@ -15,10 +15,39 @@ namespace KorbitSharp
         public static async Task<string> GetAsync(string uri)
         {
             var http = new HttpClient();
+
+            if (Auth.IsAuthorized)
+                http.DefaultRequestHeaders.Add("Authorization", "Bearer " + await Auth.GetAccessTokenAsync());
+
             var response = await http.GetAsync(uri);
 
             if (response.IsSuccessStatusCode == false)
+            {
+                Console.WriteLine(response.Content.ReadAsStringAsync().Result);
                 throw new HttpRequestException($"{response.StatusCode}");
+
+            }
+
+            return await response.Content.ReadAsStringAsync();
+        }
+
+        public static async Task<string> PostAsync(string uri, string payload)
+        {
+            var http = new HttpClient();
+
+            if (Auth.IsAuthorized)
+                http.DefaultRequestHeaders.Add("Authorization", "Bearer " + await Auth.GetAccessTokenAsync());
+
+            var content = new StringContent(payload);
+            var response = await http.PostAsync(uri, content);
+
+            if (response.IsSuccessStatusCode == false)
+            {
+                Console.WriteLine(uri);
+                Console.WriteLine(response.Content.ReadAsStringAsync().Result);
+                throw new HttpRequestException($"{response.StatusCode}");
+
+            }
 
             return await response.Content.ReadAsStringAsync();
         }

@@ -50,17 +50,28 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Auth\Auth.cs" />
     <Compile Include="CurrencyType.cs" />
+    <Compile Include="Exchange\Exchange.cs" />
+    <Compile Include="Exchange\ExchangeStatusCode.cs" />
+    <Compile Include="KorbitAPI\IKorbitCall.cs" />
     <Compile Include="KorbitAPI\KorbitCall.cs" />
+    <Compile Include="KorbitAPI\KorbitCallImpl.cs" />
+    <Compile Include="KorbitAPI\Model\Auth.cs" />
+    <Compile Include="KorbitAPI\Model\Constants.cs" />
+    <Compile Include="KorbitAPI\Model\Exchange.cs" />
     <Compile Include="KorbitAPI\Model\Orderbook.cs" />
     <Compile Include="KorbitAPI\Model\OrderHistory.cs" />
     <Compile Include="KorbitAPI\Model\OrderItem.cs" />
     <Compile Include="KorbitAPI\Model\Ticker.cs" />
+    <Compile Include="KorbitAPI\Model\Wallet.cs" />
     <Compile Include="KorbitAPI\RestCall.cs" />
+    <Compile Include="PublicAPI\KorbitConstants.cs" />
     <Compile Include="TimePeriod.cs" />
     <Compile Include="PublicAPI\Currency.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PublicAPI\Orderbook.cs" />
+    <Compile Include="Wallet\Wallet.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
